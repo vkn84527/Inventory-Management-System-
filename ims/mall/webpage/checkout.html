@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Checkout</title>
+	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+              <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+    </head>
+    <body>
+      {% load static %}
+
+
+    {% if not default %}
+    <script>alert("User Not Login!!!");window.location.href='/store/login'</script>
+    
+    {% endif %}
+     <center>
+     	<br>
+
+              <div class="alert alert-success" style="width:70%; "align="left" role="alert">
+
+                           <h1>Your Order Is Placed...</h1>
+                           	Expect the delivery within 3 Days.
+                           	<br>
+                           	Order ID: 442HGHB4JBBDS34BM
+                            <br>
+                            Payment Mode:Cash On Delivery
+                            <br>
+                            Name:{{name}}
+                            <br>
+                            Address:{{add}}
+
+
+
+                           
+                         
+</div></center>
+              <center><img src="{% static 'images/c4.1.jpg' %}">
+<br>
+              <button type="button" style="color: white " width="60%" class="btn btn-primary " onclick="window.location.href='http://127.0.0.1:8000'" >Continue Shopping</button>
+          </center>
+
+
+
+
+</body>
+</html>

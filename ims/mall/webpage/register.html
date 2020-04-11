@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NIT Mall- New User Registration</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+</head>
+{% load static %}
+<body style="background: url({% static 'images/c2.1.jpg' %} );">
+	{% if default1 %}
+		<script>alert("User Registered Successfully...")</script>
+		
+		{% endif %}
+
+		{% if default2 %}
+		
+		<script>alert("User Already Register Please Login");
+		window.location.href='/store/login'</script>
+		
+		{% endif %}
+	<!-- Registration Body -->
+	<br/>
+	<br/>
+
+	<center>
+		<div class="alert alert-primary" style="width: 50%;" align="left"  role="alert">
+  			<H3 align="center">New User Registration</H3>
+  			<h5 align="center">Fields Marked with (<label style="color: red">*</label>) are mandatory</h5>
+  			<h6 align="center">Already Registered? <a href="{% url 'login' %}">Login</a></h6>
+
+						
+					
+					<hr/>
+  			<form method="POST" action="{% url 'doregister' %}" id="form" onsubmit="return validate()">
+  				{% csrf_token %}
+  	<!-- Name -->
+  	<div class="form-row">
+  		<div class="form-group col-md-12">
+        	<label for="inputEmail4">Name<label style="color: red">*</label></label>
+        	<input type="text" name="name" class="form-control" id="name" placeholder="Enter Name" required=""> 
+  	    </div>
+    </div>
+    <div class="form-row">
+    	<div class="form-group col-md-12">
+	      	<label for="inputEmail4">Email<label style="color: red">*</label></label>
+	      	<input type="email" name="email" required=""  class="form-control" id="email" placeholder="Email">
+    	</div>
+   
+ 	 </div>
+ 	 <div class="form-row">
+ 	 	 <div class="form-group col-md-6">
+     	 <label for="inputPassword4">Password<label style="color: red">*</label></label>
+     	 <input type="password" name="pass"   required="" class="form-control" id="pass" placeholder="Enter Password">
+   		 </div>
+   		  <div class="form-group col-md-6">
+     	 <label for="inputPassword4">Confirm Password<label style="color: red">*</label></label>
+     	 <input type="password" required="" class="form-control" id="cpass" placeholder="Confirm Password">
+   		 </div>
+ 	 </div>
+
+
+
+
+<div class="form-row" >
+					  <div class="form-group col-md-12">
+					    <label for="inputAddress">Address<label style="color: red">*</label></label>
+					    <input type="text" name="address" required=""  class="form-control" id="address" placeholder="Enter Address">
+					  </div>
+					</div>
+					<div class="form-row" >
+					  <div class="form-group col-md-4">
+					    <label for="inputAddress">City<label style="color: red">*</label></label>
+					    <input type="text" name="city" required=""  class="form-control" id="city" placeholder="Enter City">
+					  </div>
+					   <div class="form-group col-md-5">
+					    <label for="inputAddress">State<label style="color: red">*</label></label>
+					    <input type="text" name="state" required=""  class="form-control" id="state" placeholder="Enter State">
+					  </div>
+					   <div class="form-group col-md-3">
+					    <label for="inputAddress">Pin Code<label style="color: red">*</label></label>
+					    <input type="text" name="pin" required=""  class="form-control" id="pin" placeholder="Enter Pin Code">
+					  </div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="phone">Phone<label style="color: red">*</label></label>
+							<input type="number" name="phone" required="" id="phone" placeholder="Enter Phone" class="form-control">
+						</div>
+						<div class="form-group col-md-6" >
+							<label for="dob">Date of Birth<label style="color: red">*</label></label>
+							<input type="date" name="dob" required="" id="dob" class="form-control">
+						</div>
+					</div>
+	<div class="form-row">
+
+ 	 	 <div class="form-group col-md-6">
+     	 <label for="inputPassword4">Captcha<label style="color: red">*</label></label>
+     	 <input type="password" name="cap"   required="" class="form-control" id="cap" placeholder="Enter The Text Shown">
+     	 
+   		 </div>
+   		 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   		 <img src="{% static 'images/c3.1.gif' %}" height="78" width="200">
+
+   		
+ 	 </div>
+ 
+ 
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        I agree to the <a href="{% url 'term' %}">terms and conditions</a>
+      </label>
+    </div>
+  </div>
+  <center>
+  <button type="submit" class="btn btn-primary" ><font color="white">Register</font></button></center>
+  
+</form>
+		</div>
+	</center>
+	<!-- End Registration Body -->
+	<!-- Validation of form data -->
+	<script type="text/javascript">
+		function validate() {
+
+			var x = document.getElementById("form")
+            var y = document.getElementById("gridCheck")
+
+		if(x.name.value.length==0){
+			alert("Invalid Name Please Check")
+			x.name.focus();
+			return false;
+		}
+		else if(x.pass.value!=x.cpass.value)
+		{
+			alert("Passwords Don't Match")
+			x.cpass.focus();
+			x.cpass.type="text"
+			return false;
+		}
+		else if(x.cap.value!="W68HP"){
+      alert("Invalid Captcha")
+      x.cap.focus();
+      return false;
+    }
+    else if(!y.checked)
+    {
+    	alert("Please Confirm!!")
+      return false;
+    }
+		
+		return true;
+
+		}
+	</script>
+	<!-- End Validation -->
+</body>
+</html>
